@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Anima2D;
+using Controllers;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
@@ -74,7 +75,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GameObject.Find("GameManager").GetComponent<GameSceneManager>().IsGameStart)
+        if (GameObject.Find("GameManager").GetComponent<GameSceneController>().IsGameStart)
         {
             /*Debug.Log("<color=blue>" + gameObject.name + "'s State:" + _state + ", Onground:" + OnGround() +
                       "</color>");*/
@@ -108,7 +109,7 @@ public class Enemy : MonoBehaviour
                 _downDelta += Time.deltaTime;
                 if (_downDelta >= 1f)
                 {
-                    GameObject.Find("GameManager").GetComponent<GameSceneManager>()
+                    GameObject.Find("GameManager").GetComponent<GameSceneController>()
                         .AddWillGetExp(this._experiencePoint);
                     Destroy(gameObject);
                 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using Controller;
+using Controllers;
 using UnityEngine;
 using UnityEngine.UI;
 using Values;
@@ -50,8 +50,8 @@ public class Player : MonoBehaviour
     //Managers;
     private GameObject _gameManager;
     private GameUiController _gameUiController;
-    private OverallManager _overallManager;
-    private GameSceneManager _gameSceneManager;
+    private OverallController _overallController;
+    private GameSceneController _gameSceneController;
 
     //Attack
     private float _attackInterval;
@@ -113,9 +113,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_gameSceneManager.IsGameStart) return;
-        if (_gameSceneManager.GameClear) return;
-        if (!_gameSceneManager.GameOver)
+        if (!_gameSceneController.IsGameStart) return;
+        if (_gameSceneController.GameClear) return;
+        if (!_gameSceneController.GameOver)
         {
             RefreshGuardText();
             _guardInterval -= Time.deltaTime;
@@ -256,7 +256,7 @@ public class Player : MonoBehaviour
                     if (_isJump || _isStationary) _isTapped = false;
                     _isTouchMoving = false;
                     _isStationary = false;
-                    if (_overallManager.JumpPattern == OverallManager.JumpPatterns.Flick)
+                    if (_overallController.JumpPattern == OverallController.JumpPatterns.Flick)
                     {
                         Flicked();
                     }
@@ -465,7 +465,7 @@ public class Player : MonoBehaviour
         if (_hitPoint <= 0)
         {
             _hitPoint = 0;
-            if (!_gameSceneManager.GameClear) _gameSceneManager.GameOver = true;
+            if (!_gameSceneController.GameClear) _gameSceneController.GameOver = true;
         }
 
         _gameUiController.ToHp = _hitPoint;
@@ -516,11 +516,11 @@ public class Player : MonoBehaviour
 
     void SetStatus()
     {
-        SetHP(_overallManager.MaxPlayerHp);
-        _attackPower = _overallManager.AttackPlayerPower;
-        _defencePower = _overallManager.DefencePlayerPower;
-        _shieldPower = _overallManager.ShieldPower;
-        _combo = _overallManager.ComboPlayer;
+        SetHP(_overallController.MaxPlayerHp);
+        _attackPower = _overallController.AttackPlayerPower;
+        _defencePower = _overallController.DefencePlayerPower;
+        _shieldPower = _overallController.ShieldPower;
+        _combo = _overallController.ComboPlayer;
         switch (_playerPattern)
         {
             case PlayerPattern.RabbitTank:
@@ -533,8 +533,8 @@ public class Player : MonoBehaviour
     {
         _gameManager = GameObject.Find("GameManager");
         _gameUiController = _gameManager.GetComponent<GameUiController>();
-        _gameSceneManager = _gameManager.GetComponent<GameSceneManager>();
-        _overallManager = GameObject.Find("OverallManager").GetComponent<OverallManager>();
+        _gameSceneController = _gameManager.GetComponent<GameSceneController>();
+        _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
     }
 
 /*

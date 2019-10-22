@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Anima2D;
+using Controllers;
 using UnityEngine;
 
 public class LargeEnemy : MonoBehaviour
@@ -97,7 +98,7 @@ public class LargeEnemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GameObject.Find("GameManager").GetComponent<GameSceneManager>().IsGameStart)
+        if (GameObject.Find("GameManager").GetComponent<GameSceneController>().IsGameStart)
         {
             Debug.Log(gameObject.name + "'s HP : " + _hitPoint.ToString());
             if (!_isAttackState)
@@ -134,7 +135,7 @@ public class LargeEnemy : MonoBehaviour
                 _downDelta += Time.deltaTime;
                 if (_downDelta >= 1f)
                 {
-                    GameObject.Find("GameManager").GetComponent<GameSceneManager>()
+                    GameObject.Find("GameManager").GetComponent<GameSceneController>()
                         .AddWillGetExp(this._experiencePoint);
                     Destroy(gameObject);
                 }

@@ -1,20 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Controllers;
 using UnityEngine;
 
 public class ProductionBehaviour : StateMachineBehaviour
 {
-    private GameSceneManager _gameSceneManager;
+    private GameSceneController _gameSceneController;
     private GameObject _canvas;
-    private AudioControler _audioControler;
+    private AudioController _audioController;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _canvas = GameObject.Find("Canvas");
-        _audioControler = GameObject.Find("Audio Source").GetComponent<AudioControler>();
-        _gameSceneManager = GameObject.Find("GameManager").GetComponent<GameSceneManager>();
-        _gameSceneManager.PlayStartAudio();
+        _audioController = GameObject.Find("Audio Source").GetComponent<AudioController>();
+        _gameSceneController = GameObject.Find("GameManager").GetComponent<GameSceneController>();
+        _gameSceneController.PlayStartAudio();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -26,8 +27,8 @@ public class ProductionBehaviour : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _canvas.GetComponent<Canvas>().enabled = true;
-        _gameSceneManager.GameStarted();
-        _audioControler.PlayBGM();
+        _gameSceneController.GameStarted();
+        _audioController.PlayBgm();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here

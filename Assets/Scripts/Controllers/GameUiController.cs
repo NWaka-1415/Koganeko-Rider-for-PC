@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Controller
+namespace Controllers
 {
     public class GameUiController : MonoBehaviour
     {
@@ -12,7 +12,7 @@ namespace Controller
 
         [SerializeField] private GameObject _debugLog;
 
-        private OverallManager _overallManager;
+        private OverallController _overallController;
 
         private Player _player;
         private Text _hpText;
@@ -29,7 +29,7 @@ namespace Controller
         // Use this for initialization
         void Start()
         {
-            _overallManager = GameObject.Find("OverallManager").GetComponent<OverallManager>();
+            _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
 
             _player = GameObject.FindWithTag("Player").GetComponent<Player>();
             _hpText = GameObject.Find("HP Text").GetComponent<Text>();
@@ -55,12 +55,12 @@ namespace Controller
 
         void SetUI()
         {
-            switch (_overallManager.JumpPattern)
+            switch (_overallController.JumpPattern)
             {
-                case OverallManager.JumpPatterns.Flick:
+                case OverallController.JumpPatterns.Flick:
                     _jumpButton.SetActive(false);
                     break;
-                case OverallManager.JumpPatterns.Button:
+                case OverallController.JumpPatterns.Button:
                     _jumpButton.SetActive(true);
                     break;
             }
@@ -68,7 +68,7 @@ namespace Controller
 
         void InitImageParam()
         {
-            _debugLog.SetActive(_overallManager.IsDebugMode);
+            _debugLog.SetActive(_overallController.IsDebugMode);
 
             //Statusアイコンのセット(不可視化)
             foreach (GameObject paramIcon in _paramIcons)
@@ -147,7 +147,7 @@ namespace Controller
      */
         public void ShowDebugMessage(string message)
         {
-            if (!_overallManager.IsDebugMode) return;
+            if (!_overallController.IsDebugMode) return;
             if (_debugLog.GetComponent<Text>().text.Length > 300)
             {
                 _debugLog.GetComponent<Text>().text = "";

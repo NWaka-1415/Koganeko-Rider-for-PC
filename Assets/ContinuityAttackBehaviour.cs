@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Controllers;
 using UnityEngine;
 
 public class ContinuityAttackBehaviour : StateMachineBehaviour
 {
     private Player _player;
-    private GameSceneManager _gameSceneManager;
+    private GameSceneController _gameSceneController;
     private int _count;
     private int _attackCount;
     private float _delta;
@@ -15,8 +16,8 @@ public class ContinuityAttackBehaviour : StateMachineBehaviour
     {
         animator.ResetTrigger("isAttack00");
         _player = animator.gameObject.GetComponent<Player>();
-        _gameSceneManager = GameObject.Find("GameManager").GetComponent<GameSceneManager>();
-        if (!_gameSceneManager.GameClear && !_gameSceneManager.GameOver)
+        _gameSceneController = GameObject.Find("GameManager").GetComponent<GameSceneController>();
+        if (!_gameSceneController.GameClear && !_gameSceneController.GameOver)
         {
             _player.Attack(0);
         }
@@ -96,7 +97,7 @@ public class ContinuityAttackBehaviour : StateMachineBehaviour
             _player.TapCount = 0;
         }
 
-        if (!_gameSceneManager.GameClear && !_gameSceneManager.GameOver) _player.Attack(1);
+        if (!_gameSceneController.GameClear && !_gameSceneController.GameOver) _player.Attack(1);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
