@@ -12,19 +12,9 @@ namespace Controllers
         [SerializeField] private Image loadBar = null;
 
         // Update is called once per frame
-        private void Awake()
+        private void Start()
         {
-            StartCoroutine(LoadScene());
-        }
-
-        IEnumerator LoadScene()
-        {
-            _async = RoomController.instance.GotoRoom(Room.Gaming);
-            while (!_async.isDone)
-            {
-                loadBar.fillAmount = _async.progress;
-                yield return null;
-            }
+            RoomController.instance.GotoRoom(Room.Gaming);
         }
     }
 }

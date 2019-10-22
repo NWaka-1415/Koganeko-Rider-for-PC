@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Values;
 
 namespace Controllers
@@ -13,6 +15,8 @@ namespace Controllers
         public static RoomController instance => _instance;
 
         private Room _currentRoom;
+
+        private AsyncOperation _async;
 
         private Dictionary<Room, String> _rooms;
 
@@ -33,10 +37,22 @@ namespace Controllers
             _rooms.Add(Room.HomeToGame, Scenes.Load);
         }
 
-        public AsyncOperation GotoRoom(Room room)
+        public void GotoRoom(Room room, bool loadAnim = false, Image loadImage = null)
         {
             _currentRoom = room;
-            return SceneManager.LoadSceneAsync(_rooms[room]);
+            _async = SceneManager.LoadSceneAsync(_rooms[room]);
+            if (!loadAnim) return;
+            if (loadImage == null) return;
+            StartCoroutine(LoadScene(loadImage));
+        }
+
+        IEnumerator LoadScene(Image image)
+        {
+            while (!_async.isDone)
+            {
+                image.fillAmount = _async.progress;
+                yield return null;
+            }
         }
     }
 }
