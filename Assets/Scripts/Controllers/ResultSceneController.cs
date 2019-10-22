@@ -11,7 +11,6 @@ namespace Controllers
         [SerializeField] private GameObject _expText;
         private Animator _animator;
 
-        private OverallController _overallController;
         private Text _clearTimeText;
 
         private int _view;
@@ -19,16 +18,16 @@ namespace Controllers
         // Use this for initialization
         void Start()
         {
+            RoomController.instance.Initialize(Room.Result);
             _view = 0;
 
             _animator = GetComponent<Animator>();
             _animator.SetInteger("View", _view);
 
-            _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
-            _expText.GetComponent<Text>().text = String.Format("獲得Exp:{0:0000}\n\n合計Exp:{1:0000}",
-                _overallController.GettingExp, _overallController.ExperiencePoint);
+            _expText.GetComponent<Text>().text =
+                $"獲得Exp:{OverallController.instance.GettingExp:0000}\n\n合計Exp:{OverallController.instance.ExperiencePoint:0000}";
             _clearTimeText = GameObject.Find("ClearTimeText").GetComponent<Text>();
-            _clearTimeText.text = String.Format(" クリアタイム：{0:0000}", _overallController.ClearTime);
+            _clearTimeText.text = $" クリアタイム：{OverallController.instance.ClearTime:0000}";
         }
 
         private void Update()
@@ -47,7 +46,7 @@ namespace Controllers
                 }
                 else
                 {
-                    SceneManager.LoadScene(Scenes.Home);
+                    RoomController.instance.GotoRoom(Room.Home);
                 }
             }
         }

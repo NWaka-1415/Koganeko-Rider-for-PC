@@ -1,26 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1219628578867104}
-  m_IsPrefabAsset: 1
 --- !u!1 &1219628578867104
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4156822008546194}
   - component: {fileID: 114272228600041952}
-  - component: {fileID: 114968426119732166}
   m_Layer: 0
   m_Name: OverallManager
   m_TagString: Untagged
@@ -30,9 +19,10 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &4156822008546194
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219628578867104}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -43,9 +33,10 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114272228600041952
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219628578867104}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -53,21 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stagePrefabs:
-  - {fileID: 1751148387479256, guid: 91b57df1adc942342acacd7f22f55e85, type: 2}
-  - {fileID: 1512197519030812, guid: a438e218e9644de4d8e72f1a62a78a66, type: 2}
-  - {fileID: 1450563624640604, guid: 14308a3ba6688fa499f34c98cb104131, type: 2}
-  - {fileID: 1028343961183350, guid: 1878c9cf85fa68249b972d2c7f745a1a, type: 2}
-  - {fileID: 1381508874360564, guid: 7db20edefa3148d47b3b37ebcd64b6ba, type: 2}
-  _cleatedChapter: 1
+  - {fileID: 1751148387479256, guid: 91b57df1adc942342acacd7f22f55e85, type: 3}
+  - {fileID: 1512197519030812, guid: a438e218e9644de4d8e72f1a62a78a66, type: 3}
+  - {fileID: 1450563624640604, guid: 14308a3ba6688fa499f34c98cb104131, type: 3}
+  - {fileID: 1028343961183350, guid: 1878c9cf85fa68249b972d2c7f745a1a, type: 3}
+  - {fileID: 1381508874360564, guid: 7db20edefa3148d47b3b37ebcd64b6ba, type: 3}
   _stagePerChapter: 5
---- !u!114 &114968426119732166
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1219628578867104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4fa195bc099c14b8859ba2d6b43016, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  <CreatedChapter>k__BackingField: 1

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Controllers
@@ -10,11 +9,8 @@ namespace Controllers
     {
         [SerializeField] private AudioClip _audio;
 
-        [SerializeField] private string _loadScene;
-        [SerializeField] private string _destroyScene;
+        [SerializeField] private Room loadScene;
 
-        private OverallController _overallController;
-        private SceneController _sceneController;
         private Button _button;
         private AudioSource _audioSource;
 
@@ -30,8 +26,6 @@ namespace Controllers
             {
                 Text _text = GetComponentInChildren<Text>();
                 _text.text = $"ステージ{_stage:00}";
-                _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
-                _sceneController = GameObject.Find("OverallManager").GetComponent<SceneController>();
                 _button.onClick.AddListener(OnClickedSttageButton);
             }
             else
@@ -44,20 +38,14 @@ namespace Controllers
         {
             _audioSource.clip = _audio;
             _audioSource.Play();
-            _overallController.UserSelectChapter = _chapter;
-            _overallController.UserSelectStage = _stage;
-            _sceneController.MoveScene(_loadScene);
+            OverallController.instance.UserSelectChapter = _chapter;
+            OverallController.instance.UserSelectStage = _stage;
+            
         }
 
         void OnClickedNormalButton()
         {
-            SceneManager.LoadScene(_loadScene);
-            StartCoroutine(unloadScene());
-        }
-
-        private IEnumerator unloadScene()
-        {
-            yield return SceneManager.UnloadSceneAsync(_destroyScene);
+            RoomController.instance.GotoRoom(loadScene);
         }
     
         public int Chapter

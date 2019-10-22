@@ -16,6 +16,8 @@ namespace Controllers
 
         private Room _currentRoom;
 
+        private Room _prevRoom;
+
         private AsyncOperation _async;
 
         private Dictionary<Room, String> _rooms;
@@ -24,6 +26,8 @@ namespace Controllers
         {
             if (_instance == null) _instance = this;
             else if (_instance != this) Destroy(gameObject);
+            _currentRoom = Room.NonSet;
+            _prevRoom = _currentRoom;
             SetRooms();
         }
 
@@ -37,10 +41,21 @@ namespace Controllers
             _rooms.Add(Room.HomeToGame, Scenes.Load);
         }
 
-        public void GotoRoom(Room room, bool loadAnim = false, Image loadImage = null)
+        public void Initialize(Room currentRoom)
         {
+            if (_currentRoom != Room.NonSet) return;
+            this._currentRoom = currentRoom;
+            _prevRoom = _currentRoom;
+        }
+
+        public void GotoRoom(Room room, bool isAdditive = false, bool loadAnim = false, Image loadImage = null)
+        {
+            _prevRoom = _currentRoom;
             _currentRoom = room;
-            _async = SceneManager.LoadSceneAsync(_rooms[room]);
+            _async = isAdditive
+                ? SceneManager.LoadSceneAsync(_rooms[room], LoadSceneMode.Additive)
+                : SceneManager.LoadSceneAsync(_rooms[room]);
+            if (!isAdditive) SceneManager.UnloadSceneAsync(_rooms[_prevRoom]);
             if (!loadAnim) return;
             if (loadImage == null) return;
             StartCoroutine(LoadScene(loadImage));

@@ -49,6 +49,7 @@ namespace Controllers
         // Use this for initialization
         void Start()
         {
+            RoomController.instance.Initialize(Room.Gaming);
             _audioSource = GetComponent<AudioSource>();
             _gameClearPanel = GameObject.Find("GameClearPanel");
             _gameOverPanel = GameObject.Find("GameOverPanel");

@@ -6,6 +6,7 @@ namespace Controllers
         Home,
         HomeToGame,
         Gaming,
-        Result
+        Result,
+        NonSet
     }
 }

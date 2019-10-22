@@ -351,7 +351,7 @@ namespace Controllers
             OverallController.instance.ResetGameData();
             Destroy(GameObject.Find("OverallManager"));
             //削除後タイトルに戻る(時間を若干開けて戻るようにしようね)
-            SceneManager.LoadScene(Scenes.Title);
+            RoomController.instance.GotoRoom(Room.Title);
             SceneManager.UnloadSceneAsync(Scenes.Home);
         }
 
