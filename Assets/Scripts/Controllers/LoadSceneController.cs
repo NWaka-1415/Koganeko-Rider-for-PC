@@ -14,7 +14,7 @@ namespace Controllers
         // Update is called once per frame
         private void Start()
         {
-            RoomController.instance.GotoRoom(Room.Gaming);
+            RoomController.instance.GotoRoom(Room.Gaming, loadAnim: true, loadImage: loadBar);
         }
     }
 }
