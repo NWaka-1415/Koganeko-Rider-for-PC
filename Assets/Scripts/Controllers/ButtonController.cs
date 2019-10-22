@@ -40,7 +40,7 @@ namespace Controllers
             _audioSource.Play();
             OverallController.instance.UserSelectChapter = _chapter;
             OverallController.instance.UserSelectStage = _stage;
-            
+            RoomController.instance.GotoRoom(loadScene);
         }
 
         void OnClickedNormalButton()

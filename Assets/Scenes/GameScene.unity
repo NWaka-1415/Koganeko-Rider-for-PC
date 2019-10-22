@@ -305,8 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audio: {fileID: 0}
-  _loadScene: HomeScene
-  _destroyScene: GameScene
+  loadScene: 0
 --- !u!114 &87257035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2374,8 +2373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audio: {fileID: 0}
-  _loadScene: HomeScene
-  _destroyScene: GameScene
+  loadScene: 0
 --- !u!1001 &995547787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3634,6 +3632,63 @@ RectTransform:
   m_AnchoredPosition: {x: 278.79993, y: -128.20007}
   m_SizeDelta: {x: 544.6, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1724401423
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1219628578867104, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_Name
+      value: OverallManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156822008546194, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156822008546194, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156822008546194, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156822008546194, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156822008546194, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156822008546194, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156822008546194, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156822008546194, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156822008546194, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156822008546194, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156822008546194, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 64a7e64dacdfd0249823ac912cbb0161, type: 3}
 --- !u!1001 &1724422954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4798,8 +4853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audio: {fileID: 0}
-  _loadScene: LoadScene
-  _destroyScene: GameScene
+  loadScene: 0
 --- !u!114 &2044804803
 MonoBehaviour:
   m_ObjectHideFlags: 0
