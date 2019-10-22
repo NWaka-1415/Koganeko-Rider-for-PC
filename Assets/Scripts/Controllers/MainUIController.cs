@@ -57,6 +57,8 @@ namespace Controllers
         // Use this for initialization
         void Start()
         {
+            RoomController.instance.Initialize(Room.Home);
+            
             _audioSource = GetComponent<AudioSource>();
 
             _timeUI = GameObject.Find("TimeText@Home");
