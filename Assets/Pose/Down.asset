@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
+  m_Name: Down
+  m_EditorClassIdentifier: 
+  m_PoseEntries:
+  - path: SnowRiceField_0/New bone
+    localPosition: {x: 0.03160143, y: -0.24011445, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.9961947, w: 0.08715588}
+    localScale: {x: 0.40052, y: 0.80001, z: 0}
+  - path: SnowRiceField_4/New bone
+    localPosition: {x: 0.10071683, y: 0.061904788, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.79338044, w: -0.60872614}
+    localScale: {x: 0.080942, y: 0.43562, z: 1}
+  - path: SnowRiceField_5/New bone
+    localPosition: {x: -0.09947789, y: 0.061612725, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.5329357, w: 0.84615576}
+    localScale: {x: 0.09265597, y: 0.41916, z: 1}
+  - path: Arm_R/New bone
+    localPosition: {x: 0.5696509, y: -0.016933203, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.96040785, w: -0.2785979}
+    localScale: {x: 0.55765986, y: 0.2957315, z: 1}
+  - path: Arm_L/New bone
+    localPosition: {x: -0.5691202, y: -0.020557642, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.32154706, w: 0.9468936}
+    localScale: {x: 0.5594062, y: 0.48125, z: 1}

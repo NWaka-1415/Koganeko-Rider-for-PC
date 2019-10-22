@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
+  m_Name: Normal
+  m_EditorClassIdentifier: 
+  m_PoseEntries:
+  - path: Arm_R_Bone
+    localPosition: {x: -2.4399948, y: 2.2555733, z: 0}
+    localRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 3.0937595, y: 1.1000024, z: 1}
+  - path: Arm_R_Bone/Arm_R/Arm_R_Hand/New bone
+    localPosition: {x: 0, y: 2.055521, z: 0}
+    localRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 4.091684, y: 1.4500009, z: 1}
+  - path: Leg_R_Bone
+    localPosition: {x: -1.3600006, y: -1.8553333, z: 0}
+    localRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 3.1375093, y: 1.3125024, z: 1}
+  - path: Leg_R_Bone/Leg_R/Foot_R/New bone (1)
+    localPosition: {x: 0.3, y: 1.3, z: 0}
+    localRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 2.559382, y: 1, z: 1}
+  - path: Leg_L_Bone
+    localPosition: {x: 1.6010056, y: -1.8553333, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 3.1375058, y: 1.3125014, z: 1}
+  - path: Leg_L_Bone/Leg_L/Foot_L/New bone
+    localPosition: {x: 0.3, y: 1.3, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 2.559375, y: 1, z: 1}
+  - path: Eye_L/New bone
+    localPosition: {x: -0.1, y: 0.24095726, z: 0}
+    localRotation: {x: 0, y: 0, z: 0, w: 1}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Eye_R/New bone (1)
+    localPosition: {x: 0.1, y: 0.24095726, z: 0}
+    localRotation: {x: 0, y: 0, z: 1, w: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Arm_L_Bone
+    localPosition: {x: 2.4400024, y: 2.2555733, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 3.0937557, y: 1.1000015, z: 1}
+  - path: Arm_L_Bone/Arm_L/Arm_L_Hand/New bone
+    localPosition: {x: 0, y: 2.055521, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 4.0916834, y: 1.4500011, z: 1}

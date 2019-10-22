@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
+  m_Name: Prev
+  m_EditorClassIdentifier: 
+  m_PoseEntries:
+  - path: New bone
+    localPosition: {x: -0.004062652, y: -5.628506, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+    localScale: {x: 9.3125, y: 1.4, z: 1}
+  - path: New bone/Arm_R/Arm_R_Bone
+    localPosition: {x: 0.030038351, y: 1.9935912, z: 0}
+    localRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
+    localScale: {x: 3.7874959, y: 1, z: 1}
+  - path: New bone/Arm_R/Arm_R_Bone/Arm_R_Hand/Arm_RHand_Bone
+    localPosition: {x: -0.013281053, y: 3.1208584, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.9648233, w: 0.26289916}
+    localScale: {x: 3.7875025, y: 1, z: 1}
+  - path: New bone/Arm_L/Arm_L_Bone
+    localPosition: {x: 0.010833978, y: 1.9877598, z: 0}
+    localRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
+    localScale: {x: 3.7875009, y: 1, z: 1}
+  - path: New bone/Arm_L/Arm_L_Bone/Arm_L_Hand/Arm_L_Hand_Bone
+    localPosition: {x: 0.0490892, y: 3.115858, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.92168486, w: 0.3879395}
+    localScale: {x: 3.7875025, y: 1, z: 1}

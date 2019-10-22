@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
+  m_Name: Noemal
+  m_EditorClassIdentifier: 
+  m_PoseEntries:
+  - path: New bone
+    localPosition: {x: -0.9282373, y: -5.094941, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+    localScale: {x: 2.3375, y: 1.5625, z: 1}
+  - path: New bone/Arm_R/New bone
+    localPosition: {x: -0.02701664, y: 1.0691938, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: New bone/Arm_R/New bone/Arm_R_Hand/New bone
+    localPosition: {x: 0.15083885, y: 1.7388577, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: New bone/Head_R/New bone
+    localPosition: {x: 2.313557, y: -0.52297306, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.9860004, w: 0.16674267}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: New bone/Head_R/New bone/Mouth_R/New bone
+    localPosition: {x: 1.68, y: 0.1, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.9961185, w: 0.08802216}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: New bone/Arm_L/New bone
+    localPosition: {x: -0, y: 1.0691938, z: 0}
+    localRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: New bone/Arm_L/New bone/Arm_L_Hand/New bone
+    localPosition: {x: 0.15, y: 1.7395244, z: 0}
+    localRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: New bone/Head_L/New bone
+    localPosition: {x: 2.1332834, y: -0.44140148, z: 0}
+    localRotation: {x: -0, y: -0, z: 0.9860005, w: 0.16674268}
+    localScale: {x: 1, y: 1, z: 1.5}
+  - path: New bone/Head_L/New bone/Mouth_L/New bone
+    localPosition: {x: 1.68, y: 0.1, z: 0}
+    localRotation: {x: -0, y: -0, z: -0.99611855, w: 0.088022165}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: New bone/Tail/New bone
+    localPosition: {x: -4.7279725, y: 0.010914326, z: 0}
+    localRotation: {x: 0, y: 0, z: 0, w: 1}
+    localScale: {x: 1, y: 1, z: 1}
