@@ -33,10 +33,10 @@ namespace Controllers
             _rooms.Add(Room.HomeToGame, Scenes.Load);
         }
 
-        public void GotoRoom(Room room)
+        public AsyncOperation GotoRoom(Room room)
         {
             _currentRoom = room;
-            SceneManager.LoadSceneAsync(_rooms[room]);
+            return SceneManager.LoadSceneAsync(_rooms[room]);
         }
     }
 }

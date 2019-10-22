@@ -1,23 +1,29 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Controllers
 {
     public class LoadSceneController : MonoBehaviour
     {
-        private float _delta = 0f;
+        private AsyncOperation _async;
+        [SerializeField] private Image loadBar = null;
 
         // Update is called once per frame
-        void FixedUpdate()
+        private void Awake()
         {
-            Debug.Log("<color=red>Delta=" + _delta + "</color>");
-            if (_delta >= 0.25f)
+            StartCoroutine(LoadScene());
+        }
+
+        IEnumerator LoadScene()
+        {
+            _async = RoomController.instance.GotoRoom(Room.Gaming);
+            while (!_async.isDone)
             {
-                SceneManager.LoadScene("GameScene");
-            }
-            else
-            {
-                _delta += Time.deltaTime;
+                loadBar.fillAmount = _async.progress;
+                yield return null;
             }
         }
     }
