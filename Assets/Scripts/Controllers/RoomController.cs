@@ -26,6 +26,7 @@ namespace Controllers
         {
             if (_instance == null) _instance = this;
             else if (_instance != this) Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
             _currentRoom = Room.NonSet;
             _prevRoom = _currentRoom;
             SetRooms();
@@ -44,6 +45,7 @@ namespace Controllers
         public void Initialize(Room currentRoom)
         {
             if (_currentRoom != Room.NonSet) return;
+            Debug.Log($"RoomControllerInitialized on {currentRoom}");
             this._currentRoom = currentRoom;
             _prevRoom = _currentRoom;
         }
