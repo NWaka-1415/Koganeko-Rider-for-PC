@@ -57,13 +57,13 @@ public class DamageTextUI : MonoBehaviour
 
     public int DamagedValue
     {
-        get { return _damagedValue; }
-        set { _damagedValue = value; }
+        get => _damagedValue;
+        set => _damagedValue = value;
     }
 
     public GameObject Parent
     {
-        get { return _parent; }
-        set { _parent = value; }
+        get => _parent;
+        set => _parent = value;
     }
 }

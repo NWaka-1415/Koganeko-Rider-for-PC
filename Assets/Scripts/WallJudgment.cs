@@ -5,46 +5,41 @@ using Values;
 
 public class WallJudgment : MonoBehaviour
 {
-    private bool _judg;
-    private bool _isTrriger;
+    private bool _isTrigger;
 
     void Awake()
     {
-        _judg = false;
-        _isTrriger = false;
+        Judgment = false;
+        _isTrigger = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!_isTrriger)
+        if (!_isTrigger)
         {
-            _judg = false;
+            Judgment = false;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _isTrriger = true;
+        _isTrigger = true;
         if (other.CompareTag(Tag.GroundAndWall))
         {
             Debug.Log("isWall");
-            _judg = true;
+            Judgment = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        _isTrriger = false;
+        _isTrigger = false;
         if (other.CompareTag(Tag.GroundAndWall))
         {
-            _judg = false;
+            Judgment = false;
         }
     }
 
-    public bool Judg
-    {
-        get { return _judg; }
-        set { _judg = value; }
-    }
+    public bool Judgment { get; set; }
 }

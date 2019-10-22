@@ -1,30 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Controllers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TitleToMain : MonoBehaviour
 {
-    private float _time;
-
-    // Use this for initialization
-    void Start()
-    {
-        _time = 0;
-    }
-
     // Update is called once per frame
     void Update()
     {
-        _time += Time.deltaTime;
-        if (Input.touchCount > 0 && _time > 1)
-        {
-            MoveScene();
-        }
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+        else if (Input.anyKeyDown) MoveScene();
     }
 
     void MoveScene()
     {
-        SceneManager.LoadSceneAsync("HomeScene");
+        RoomController.instance.GotoRoom(Room.Home);
     }
 }

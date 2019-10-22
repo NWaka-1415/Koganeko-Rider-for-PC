@@ -107,7 +107,7 @@ public class Bullet : MonoBehaviour
      */
     public int IsRight
     {
-        get { return _isRight; }
+        get => _isRight;
         set
         {
             if (value == 1 || value == -1) _isRight = value;
@@ -116,14 +116,14 @@ public class Bullet : MonoBehaviour
 
     public int AttackPower
     {
-        get { return _attackPower; }
-        set { _attackPower = value >= 0 ? value : 0; }
+        get => _attackPower;
+        set => _attackPower = value >= 0 ? value : 0;
     }
 
     public GameObject Parent
     {
-        get { return _parent; }
-        set { _parent = value; }
+        get => _parent;
+        set => _parent = value;
     }
 
     //------------------------------------------------------
