@@ -25,7 +25,7 @@ namespace Controllers
 		public void MoveScene(string scene)
 		{
 			_nowScene = scene;
-			SceneManager.LoadScene(scene);
+			SceneManager.LoadSceneAsync(scene);
 		}
 
 		public string HomeScene
