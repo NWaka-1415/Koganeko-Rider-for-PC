@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class PageScrollRect : ScrollRect
 {
     // 1ページの幅.
-    private float pageWidth;
+    private float _pageWidth;
 
     // 前回のページIndex. 最も左を0とする.
-    private int prevPageIndex = 0;
+    private int _prevPageIndex = 0;
 
     protected override void Awake()
     {
@@ -17,7 +17,7 @@ public class PageScrollRect : ScrollRect
 
         GridLayoutGroup grid = content.GetComponent<GridLayoutGroup>();
         // 1ページの幅を取得.
-        pageWidth = grid.cellSize.x + grid.spacing.x;
+        _pageWidth = grid.cellSize.x + grid.spacing.x;
     }
 
     // ドラッグを開始したとき.
@@ -37,20 +37,20 @@ public class PageScrollRect : ScrollRect
 
         // スナップさせるページを決定する.
         // スナップさせるページのインデックスを決定する.
-        int pageIndex = Mathf.RoundToInt(content.anchoredPosition.x / pageWidth);
+        int pageIndex = Mathf.RoundToInt(content.anchoredPosition.x / _pageWidth);
         // ページが変わっていない且つ、素早くドラッグした場合.
         // ドラッグ量の具合は適宜調整してください.
-        if (pageIndex == prevPageIndex && Mathf.Abs(eventData.delta.x) >= 5)
+        if (pageIndex == _prevPageIndex && Mathf.Abs(eventData.delta.x) >= 5)
         {
             pageIndex += (int) Mathf.Sign(eventData.delta.x);
         }
 
         // Contentをスクロール位置を決定する.
         // 必ずページにスナップさせるような位置になるところがポイント.
-        float destX = pageIndex * pageWidth;
+        float destX = pageIndex * _pageWidth;
         content.anchoredPosition = new Vector2(destX, content.anchoredPosition.y);
 
         // 「ページが変わっていない」の判定を行うため、前回スナップされていたページを記憶しておく.
-        prevPageIndex = pageIndex;
+        _prevPageIndex = pageIndex;
     }
 }

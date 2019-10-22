@@ -8,8 +8,6 @@ namespace Controllers
         [SerializeField] private GameObject[] _phasesObj;
         private Phase[] _phases;
 
-        private OverallController _overallController;
-        private GameSceneController _gameSceneController;
         private int _nowPhase = 0;
 
         // Use this for initialization
@@ -20,8 +18,8 @@ namespace Controllers
 
         private void Update()
         {
-            if (_gameSceneController.GameClear) return;
-            if (isEndPhase(_phases[_nowPhase].Enemys))
+            if (GameSceneController.instance.GameClear) return;
+            if (isEndPhase(_phases[_nowPhase].Enemies))
             {
                 _nowPhase += 1;
             }
@@ -30,21 +28,19 @@ namespace Controllers
             if (!(_nowPhase >= _phases.Length))
             {
                 //Debug.Log("if Root");
-                if (!isEndPhase(_phases[_nowPhase].Enemys))
+                if (!isEndPhase(_phases[_nowPhase].Enemies))
                 {
-                    SetActives(_phases[_nowPhase].Enemys);
+                    SetActives(_phases[_nowPhase].Enemies);
                 }
             }
             else
             {
-                _gameSceneController.GameClear = true;
+                GameSceneController.instance.GameClear = true;
             }
         }
 
         void Init()
         {
-            _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
-            _gameSceneController = GameObject.Find("GameManager").GetComponent<GameSceneController>();
             _nowPhase = 0;
             _phases = new Phase[_phasesObj.Length];
             int i = 0;
@@ -56,7 +52,7 @@ namespace Controllers
 
             foreach (Phase phase in _phases)
             {
-                SetActives(phase.Enemys, false);
+                SetActives(phase.Enemies, false);
             }
         }
 

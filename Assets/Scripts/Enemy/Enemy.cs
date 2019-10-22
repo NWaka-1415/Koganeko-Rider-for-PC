@@ -82,15 +82,15 @@ public class Enemy : MonoBehaviour
             if (!_isAttackState && !_isDown)
             {
                 //Debug.Log("R:" + _isRight.ToString());
-                if (_rightWallJudgment.GetComponent<WallJudgment>().Judg)
+                if (_rightWallJudgment.GetComponent<WallJudgment>().Judgment)
                 {
-                    _rightWallJudgment.GetComponent<WallJudgment>().Judg = false;
+                    _rightWallJudgment.GetComponent<WallJudgment>().Judgment = false;
                     _isRight *= -1;
                 }
 
-                if (_leftWallJudgment.GetComponent<WallJudgment>().Judg)
+                if (_leftWallJudgment.GetComponent<WallJudgment>().Judgment)
                 {
-                    _leftWallJudgment.GetComponent<WallJudgment>().Judg = false;
+                    _leftWallJudgment.GetComponent<WallJudgment>().Judgment = false;
                     _isRight *= -1;
                 }
 

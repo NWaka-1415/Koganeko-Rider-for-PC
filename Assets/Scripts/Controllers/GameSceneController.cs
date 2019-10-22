@@ -23,7 +23,6 @@ namespace Controllers
         [SerializeField] private GameObject _production;
         [SerializeField] private AudioClip _startAudioClip;
 
-        private OverallController _overallController;
         private AudioSource _audioSource;
 
         private bool _isGameStart;
@@ -51,7 +50,6 @@ namespace Controllers
         void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
             _gameClearPanel = GameObject.Find("GameClearPanel");
             _gameOverPanel = GameObject.Find("GameOverPanel");
             _continue = GameObject.Find("AreYouContinue");
@@ -77,15 +75,15 @@ namespace Controllers
             _isGameStart = false;
             _gameClear = false;
             _gameOver = false;
-            _chapter = _overallController.UserSelectChapter;
-            _stage = _overallController.UserSelectStage;
+            _chapter = OverallController.instance.UserSelectChapter;
+            _stage = OverallController.instance.UserSelectStage;
             Debug.Log("GameSceneManager Init End");
         }
 
         void SetGameStage()
         {
             //Instantiate(_stagePrefabs[0]);
-            Instantiate(_overallController.StagePrefabsInChapters[_chapter - 1][_stage - 1]);
+            Instantiate(OverallController.instance.StagePrefabsInChapters[_chapter - 1][_stage - 1]);
         }
 
         void SetGame()
@@ -119,22 +117,22 @@ namespace Controllers
                 if (_gameClearDelta >= 2f)
                 {
                     //Resultに遷移
-                    if (_chapter == _overallController.MaxChapter && _stage == _overallController.MaxStage)
+                    if (_chapter == OverallController.instance.MaxChapter && _stage == OverallController.instance.MaxStage)
                     {
-                        if (_overallController.MaxStage + 1 > _overallController.StagePerChapter)
+                        if (OverallController.instance.MaxStage + 1 > OverallController.instance.StagePerChapter)
                         {
-                            _overallController.MaxChapter += 1;
-                            _overallController.MaxStage = 1;
+                            OverallController.instance.MaxChapter += 1;
+                            OverallController.instance.MaxStage = 1;
                         }
                         else
                         {
-                            _overallController.MaxStage += 1;
+                            OverallController.instance.MaxStage += 1;
                         }
                     }
 
-                    _overallController.AddExperiencePoint(_getExp);
-                    _overallController.ClearTime = this._clearTime;
-                    _overallController.SaveGameData();
+                    OverallController.instance.AddExperiencePoint(_getExp);
+                    OverallController.instance.ClearTime = this._clearTime;
+                    OverallController.instance.SaveGameData();
                     SceneManager.LoadScene(Scenes.Result);
                 }
                 else
@@ -157,20 +155,17 @@ namespace Controllers
 
         public bool GameClear
         {
-            get { return _gameClear; }
-            set { _gameClear = value; }
+            get => _gameClear;
+            set => _gameClear = value;
         }
 
         public bool GameOver
         {
-            get { return _gameOver; }
-            set { _gameOver = value; }
+            get => _gameOver;
+            set => _gameOver = value;
         }
 
-        public bool IsGameStart
-        {
-            get { return _isGameStart; }
-        }
+        public bool IsGameStart => _isGameStart;
 
         public void GameStarted()
         {

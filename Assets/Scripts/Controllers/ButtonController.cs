@@ -29,7 +29,7 @@ namespace Controllers
             if (this.gameObject.name == "StageSelectButton@StageSelect(Clone)")
             {
                 Text _text = GetComponentInChildren<Text>();
-                _text.text = String.Format("ステージ{0:00}", _stage);
+                _text.text = $"ステージ{_stage:00}";
                 _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
                 _sceneController = GameObject.Find("OverallManager").GetComponent<SceneController>();
                 _button.onClick.AddListener(OnClickedSttageButton);
@@ -62,14 +62,14 @@ namespace Controllers
     
         public int Chapter
         {
-            get { return _chapter; }
-            set { _chapter = value; }
+            get => _chapter;
+            set => _chapter = value;
         }
 
         public int Stage
         {
-            get { return _stage; }
-            set { _stage = value; }
+            get => _stage;
+            set => _stage = value;
         }
     }
 }

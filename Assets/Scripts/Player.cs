@@ -49,9 +49,6 @@ public class Player : MonoBehaviour
 
     //Managers;
     private GameObject _gameManager;
-    private GameUiController _gameUiController;
-    private OverallController _overallController;
-    private GameSceneController _gameSceneController;
 
     //Attack
     private float _attackInterval;
@@ -113,9 +110,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_gameSceneController.IsGameStart) return;
-        if (_gameSceneController.GameClear) return;
-        if (!_gameSceneController.GameOver)
+        if (!GameSceneController.instance.IsGameStart) return;
+        if (GameSceneController.instance.GameClear) return;
+        if (!GameSceneController.instance.GameOver)
         {
             RefreshGuardText();
             _guardInterval -= Time.deltaTime;
@@ -231,7 +228,7 @@ public class Player : MonoBehaviour
 
                     if (Vector3.Distance(touch.position, _previousPos) <= Screen.width * 0.1f)
                     {
-                        _gameUiController.ShowDebugMessage("Stationary in Moved");
+                        GameUiController.instance.ShowDebugMessage("Stationary in Moved");
                         if (_isStartTouch)
                         {
                             if (!_isTouchMoving) _guardStartTime += Time.deltaTime;
@@ -256,7 +253,7 @@ public class Player : MonoBehaviour
                     if (_isJump || _isStationary) _isTapped = false;
                     _isTouchMoving = false;
                     _isStationary = false;
-                    if (_overallController.JumpPattern == OverallController.JumpPatterns.Flick)
+                    if (OverallController.instance.JumpPattern == OverallController.JumpPatterns.Flick)
                     {
                         Flicked();
                     }
@@ -267,7 +264,7 @@ public class Player : MonoBehaviour
                     break;
             }
 
-            _gameUiController.ShowDebugMessage("isStationary:" + _isStationary);
+            GameUiController.instance.ShowDebugMessage("isStationary:" + _isStationary);
             if (_isTapped)
             {
                 _tapCount += 1;
@@ -442,7 +439,7 @@ public class Player : MonoBehaviour
         GameObject instanceText =
             Instantiate(_damageTextUI, transform.position + new Vector3(rand, 2f, 0f), transform.rotation);
         instanceText.GetComponent<DamageTextUI>().Parent = this.gameObject;
-        _gameUiController.FromHp = _hitPoint;
+        GameUiController.instance.FromHp = _hitPoint;
 
         if (thisDefencePower < damage)
         {
@@ -465,11 +462,11 @@ public class Player : MonoBehaviour
         if (_hitPoint <= 0)
         {
             _hitPoint = 0;
-            if (!_gameSceneController.GameClear) _gameSceneController.GameOver = true;
+            if (!GameSceneController.instance.GameClear) GameSceneController.instance.GameOver = true;
         }
 
-        _gameUiController.ToHp = _hitPoint;
-        _gameUiController.SetReducing();
+        GameUiController.instance.ToHp = _hitPoint;
+        GameUiController.instance.SetReducing();
     }
 
     public void ShotRabbitTankBullet()
@@ -516,11 +513,11 @@ public class Player : MonoBehaviour
 
     void SetStatus()
     {
-        SetHP(_overallController.MaxPlayerHp);
-        _attackPower = _overallController.AttackPlayerPower;
-        _defencePower = _overallController.DefencePlayerPower;
-        _shieldPower = _overallController.ShieldPower;
-        _combo = _overallController.ComboPlayer;
+        SetHP(OverallController.instance.MaxPlayerHp);
+        _attackPower = OverallController.instance.AttackPlayerPower;
+        _defencePower = OverallController.instance.DefencePlayerPower;
+        _shieldPower = OverallController.instance.ShieldPower;
+        _combo = OverallController.instance.ComboPlayer;
         switch (_playerPattern)
         {
             case PlayerPattern.RabbitTank:
@@ -532,9 +529,6 @@ public class Player : MonoBehaviour
     void SetManager()
     {
         _gameManager = GameObject.Find("GameManager");
-        _gameUiController = _gameManager.GetComponent<GameUiController>();
-        _gameSceneController = _gameManager.GetComponent<GameSceneController>();
-        _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
     }
 
 /*
@@ -544,25 +538,19 @@ public class Player : MonoBehaviour
  */
     public int IsRight
     {
-        get { return _isRight; }
-        set { _isRight = value; }
+        get => _isRight;
+        set => _isRight = value;
     }
 
     public int TapCount
     {
-        get { return _tapCount; }
-        set { _tapCount = value; }
+        get => _tapCount;
+        set => _tapCount = value;
     }
 
-    public int AttackPower
-    {
-        get { return _attackPower; }
-    }
+    public int AttackPower => _attackPower;
 
-    public bool IsGuard
-    {
-        get { return _isGuard; }
-    }
+    public bool IsGuard => _isGuard;
 
 /*
  * --------------------------

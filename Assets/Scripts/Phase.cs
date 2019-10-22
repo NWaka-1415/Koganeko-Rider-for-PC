@@ -5,10 +5,7 @@ using UnityEngine;
 public class Phase : MonoBehaviour
 {
 
-	[SerializeField] private GameObject[] _enemys;
+	[SerializeField] private GameObject[] enemies;
 
-	public GameObject[] Enemys
-	{
-		get { return _enemys; }
-	}
+	public GameObject[] Enemies => enemies;
 }
