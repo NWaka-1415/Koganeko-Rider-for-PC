@@ -11,8 +11,6 @@ namespace Controllers
         [SerializeField] private AudioClip[] _clips = new AudioClip[10];
 
         private AudioSource _audioSource;
-        private OverallController _overallController;
-        private GameSceneController _gameSceneController;
 
         private void Awake()
         {
@@ -24,12 +22,10 @@ namespace Controllers
         void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
-            _gameSceneController = GameObject.Find("GameManager").GetComponent<GameSceneController>();
-            switch (_overallController.UserSelectChapter)
+            switch (OverallController.instance.UserSelectChapter)
             {
                 case 1:
-                    switch (_overallController.UserSelectStage)
+                    switch (OverallController.instance.UserSelectStage)
                     {
                         case 1:
                             _audioSource.clip = _clips[0];

@@ -47,7 +47,6 @@ namespace Controllers
 
         private GameObject _chapterSelect;
 
-        private OverallController _overallController;
         private AudioSource _audioSource;
 
         private GameObject _jumpPatternButtonText;
@@ -58,7 +57,6 @@ namespace Controllers
         // Use this for initialization
         void Start()
         {
-            _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
             _audioSource = GetComponent<AudioSource>();
 
             _timeUI = GameObject.Find("TimeText@Home");
@@ -72,10 +70,10 @@ namespace Controllers
             _menu = GameObject.Find("MenuPanel");
             _menuWindow = GameObject.Find("MenuWindow");
             _jumpPatternButtonText = GameObject.Find("JumpPatternSettingButton/Text");
-            _jumpPatternButtonText.GetComponent<Text>().text = _overallController.JumpPattern.ToString();
+            _jumpPatternButtonText.GetComponent<Text>().text = OverallController.instance.JumpPattern.ToString();
             _debugModeButtonText = GameObject.Find("IsDebugModeSettingButton/Text");
             _debugModeButtonText.GetComponent<Text>().text =
-                String.Format("{0}", _overallController.IsDebugMode ? "DebugMode:On" : "DebugMode:Off");
+                $"{(OverallController.instance.IsDebugMode ? "DebugMode:On" : "DebugMode:Off")}";
             _menuWindow.transform.localScale = Vector3.zero;
             _menu.SetActive(false);
 
@@ -88,8 +86,8 @@ namespace Controllers
             _growAttackPower = 0;
             _growDefencePower = 0;
             _growSkill = 0;
-            _cacheExp = _overallController.ExperiencePoint;
-            _playerLevel = _overallController.PlayerLevel;
+            _cacheExp = OverallController.instance.ExperiencePoint;
+            _playerLevel = OverallController.instance.PlayerLevel;
             SetNeedExp();
             DrawExp();
 
@@ -154,24 +152,24 @@ namespace Controllers
 
         void DrawExp()
         {
-            _expText.GetComponent<Text>().text = String.Format("{0:0000}", _cacheExp);
+            _expText.GetComponent<Text>().text = $"{_cacheExp:0000}";
         }
 
         void DrawState()
         {
-            _playerLevelText.GetComponent<Text>().text = String.Format("Lv.{0}", _playerLevel);
+            _playerLevelText.GetComponent<Text>().text = $"Lv.{_playerLevel}";
 
-            _hpText.GetComponent<Text>().text = String.Format("HP：{0}", _overallController.MaxPlayerHp + _growHp);
+            _hpText.GetComponent<Text>().text = $"HP：{OverallController.instance.MaxPlayerHp + _growHp}";
             _attackText.GetComponent<Text>().text =
-                String.Format("攻撃力：{0}", _overallController.AttackPlayerPower + _growAttackPower);
+                $"攻撃力：{OverallController.instance.AttackPlayerPower + _growAttackPower}";
             _defenceText.GetComponent<Text>().text =
-                String.Format("防御力：{0}", _overallController.DefencePlayerPower + _growDefencePower);
-            _skillText.GetComponent<Text>().text = String.Format("スキルLv：{0}", 1);
+                $"防御力：{OverallController.instance.DefencePlayerPower + _growDefencePower}";
+            _skillText.GetComponent<Text>().text = $"スキルLv：{1}";
 
-            _hpGrowText.GetComponent<Text>().text = String.Format("{0:0000}", _growHp);
-            _attackGrowText.GetComponent<Text>().text = String.Format("{0:0000}", _growAttackPower);
-            _defenceGrowText.GetComponent<Text>().text = String.Format("{0:0000}", _growDefencePower);
-            _skillGrowText.GetComponent<Text>().text = String.Format("{0:0000}", _growSkill);
+            _hpGrowText.GetComponent<Text>().text = $"{_growHp:0000}";
+            _attackGrowText.GetComponent<Text>().text = $"{_growAttackPower:0000}";
+            _defenceGrowText.GetComponent<Text>().text = $"{_growDefencePower:0000}";
+            _skillGrowText.GetComponent<Text>().text = $"{_growSkill:0000}";
         }
 
         public void SaveGrow()
@@ -179,12 +177,13 @@ namespace Controllers
             _audioSource.clip = _buttonAudioClip;
             _audioSource.Play();
             _playerLevel += (_growHp / 20 + _growAttackPower / 10 + _growDefencePower / 5 + _growSkill / 1);
-            _overallController.SetGrowing(_growHp, _growAttackPower, _growDefencePower, _growSkill, _cacheExp, _playerLevel);
+            OverallController.instance.SetGrowing(_growHp, _growAttackPower, _growDefencePower, _growSkill, _cacheExp,
+                _playerLevel);
             _growHp = 0;
             _growAttackPower = 0;
             _growDefencePower = 0;
             _growSkill = 0;
-            _cacheExp = _overallController.ExperiencePoint;
+            _cacheExp = OverallController.instance.ExperiencePoint;
         }
 
         public void PlusHpPoint()
@@ -317,17 +316,17 @@ namespace Controllers
         {
             _audioSource.clip = _buttonAudioClip;
             _audioSource.Play();
-            _overallController.ChangeJumpPattern();
-            _jumpPatternButtonText.GetComponent<Text>().text = _overallController.JumpPattern.ToString();
+            OverallController.instance.ChangeJumpPattern();
+            _jumpPatternButtonText.GetComponent<Text>().text = OverallController.instance.JumpPattern.ToString();
         }
 
         public void SettingDebugMode()
         {
             _audioSource.clip = _buttonAudioClip;
             _audioSource.Play();
-            _overallController.ChangeDebugMode();
+            OverallController.instance.ChangeDebugMode();
             _debugModeButtonText.GetComponent<Text>().text =
-                String.Format("{0}", _overallController.IsDebugMode ? "DebugMode:On" : "DebugMode:Off");
+                $"{(OverallController.instance.IsDebugMode ? "DebugMode:On" : "DebugMode:Off")}";
         }
 
         public void ShowMenu()
@@ -349,7 +348,7 @@ namespace Controllers
 
         public void DataDeleteButton()
         {
-            _overallController.ResetGameData();
+            OverallController.instance.ResetGameData();
             Destroy(GameObject.Find("OverallManager"));
             //削除後タイトルに戻る(時間を若干開けて戻るようにしようね)
             SceneManager.LoadScene(Scenes.Title);

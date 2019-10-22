@@ -25,6 +25,6 @@ public class TitleToMain : MonoBehaviour
 
     void MoveScene()
     {
-        SceneManager.LoadScene("HomeScene");
+        SceneManager.LoadSceneAsync("HomeScene");
     }
 }

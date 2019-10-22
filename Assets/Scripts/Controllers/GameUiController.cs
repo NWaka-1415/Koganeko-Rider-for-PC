@@ -6,13 +6,16 @@ namespace Controllers
 {
     public class GameUiController : MonoBehaviour
     {
+        private static GameUiController _instance = null;
+
+        public static GameUiController instance => _instance;
+
+
         [SerializeField] private GameObject _pausePanel;
         [SerializeField] private GameObject _jumpButton;
         [SerializeField] private GameObject[] _paramIcons;
 
         [SerializeField] private GameObject _debugLog;
-
-        private OverallController _overallController;
 
         private Player _player;
         private Text _hpText;
@@ -26,11 +29,15 @@ namespace Controllers
 
         private bool _isPause;
 
+        private void Awake()
+        {
+            if (_instance == null) _instance = this;
+            else if (_instance != this) Destroy(gameObject);
+        }
+
         // Use this for initialization
         void Start()
         {
-            _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
-
             _player = GameObject.FindWithTag("Player").GetComponent<Player>();
             _hpText = GameObject.Find("HP Text").GetComponent<Text>();
 
@@ -55,7 +62,7 @@ namespace Controllers
 
         void SetUI()
         {
-            switch (_overallController.JumpPattern)
+            switch (OverallController.instance.JumpPattern)
             {
                 case OverallController.JumpPatterns.Flick:
                     _jumpButton.SetActive(false);
@@ -68,7 +75,7 @@ namespace Controllers
 
         void InitImageParam()
         {
-            _debugLog.SetActive(_overallController.IsDebugMode);
+            _debugLog.SetActive(OverallController.instance.IsDebugMode);
 
             //Statusアイコンのセット(不可視化)
             foreach (GameObject paramIcon in _paramIcons)
@@ -106,19 +113,19 @@ namespace Controllers
 
         public float FromHp
         {
-            get { return _fromHp; }
-            set { _fromHp = value; }
+            get => _fromHp;
+            set => _fromHp = value;
         }
 
         public float ToHp
         {
-            get { return _toHp; }
-            set { _toHp = value; }
+            get => _toHp;
+            set => _toHp = value;
         }
 
         void SetHpText()
         {
-            _hpText.text = String.Format("{0} / {1}", _player.GetHP(1).ToString(), _player.GetHP(0).ToString());
+            _hpText.text = $"{_player.GetHP(1).ToString()} / {_player.GetHP(0).ToString()}";
         }
 
         void SetIcon()
@@ -147,7 +154,7 @@ namespace Controllers
      */
         public void ShowDebugMessage(string message)
         {
-            if (!_overallController.IsDebugMode) return;
+            if (!OverallController.instance.IsDebugMode) return;
             if (_debugLog.GetComponent<Text>().text.Length > 300)
             {
                 _debugLog.GetComponent<Text>().text = "";
