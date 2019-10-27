@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Values;
 
 namespace Controllers
 {
@@ -134,7 +132,7 @@ namespace Controllers
                     OverallController.instance.AddExperiencePoint(_getExp);
                     OverallController.instance.ClearTime = this._clearTime;
                     OverallController.instance.SaveGameData();
-                    SceneManager.LoadScene(Scenes.Result);
+                    RoomController.instance.GotoRoom(Room.Result);
                 }
                 else
                 {
