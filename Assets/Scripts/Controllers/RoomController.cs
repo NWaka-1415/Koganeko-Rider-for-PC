@@ -57,7 +57,7 @@ namespace Controllers
             _async = isAdditive
                 ? SceneManager.LoadSceneAsync(_rooms[room], LoadSceneMode.Additive)
                 : SceneManager.LoadSceneAsync(_rooms[room]);
-            if (!isAdditive) SceneManager.UnloadSceneAsync(_rooms[_prevRoom]);
+//            if (!isAdditive) SceneManager.UnloadSceneAsync(_rooms[_prevRoom]);
             if (!loadAnim) return;
             if (loadImage == null) return;
             StartCoroutine(LoadScene(loadImage));
