@@ -85,9 +85,9 @@ namespace Controllers
             }
 
             //Hpのセット
-            hpGreenGage = GameObject.Find("HP Gage Green").GetComponent<Image>();
+//            hpGreenGage = GameObject.Find("HP Gage Green").GetComponent<Image>();
             hpGreenGage.fillAmount = 1;
-            hpRedGage = GameObject.Find("HP Gage Red").GetComponent<Image>();
+//            hpRedGage = GameObject.Find("HP Gage Red").GetComponent<Image>();
             hpRedGage.fillAmount = 1;
             _pausePanel.SetActive(false);
         }

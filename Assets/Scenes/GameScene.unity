@@ -5088,5 +5088,15 @@ PrefabInstance:
       propertyPath: _paramIcons.Array.data[7]
       value: 
       objectReference: {fileID: 817033340}
+    - target: {fileID: 8192050912972741884, guid: 5acabbd39c96f924fb17167c5f1eeed0,
+        type: 3}
+      propertyPath: hpGreenGage
+      value: 
+      objectReference: {fileID: 420274261}
+    - target: {fileID: 8192050912972741884, guid: 5acabbd39c96f924fb17167c5f1eeed0,
+        type: 3}
+      propertyPath: hpRedGage
+      value: 
+      objectReference: {fileID: 1737836781}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5acabbd39c96f924fb17167c5f1eeed0, type: 3}
