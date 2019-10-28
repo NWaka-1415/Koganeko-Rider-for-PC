@@ -153,7 +153,8 @@ public class Player : MonoBehaviour
 
             if (!_isDamaging)
             {
-                Touched();
+//                Touched();
+                Control();
             }
         }
         else
@@ -192,17 +193,26 @@ public class Player : MonoBehaviour
                 {
                     if (_dir.x > Screen.width * FlickPerDisplayHeight)
                     {
-                        _rigidbody2D.MovePosition(
-                            new Vector2(transform.localPosition.x + 5f, transform.localPosition.y));
+                        Teleportation();
                     }
                     else if (_dir.x < -Screen.width * FlickPerDisplayHeight)
                     {
-                        _rigidbody2D.MovePosition(new Vector2(transform.localPosition.x + -5f,
-                            transform.localPosition.y));
+                        Teleportation(false);
                     }
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// 瞬間移動する
+    /// 左向きの場合はfalseを渡すこと
+    /// </summary>
+    /// <param name="isRight"></param>
+    private void Teleportation(bool isRight = true)
+    {
+        _rigidbody2D.MovePosition(
+            new Vector2(transform.localPosition.x + 5f * (isRight ? 1f : -1f), transform.localPosition.y));
     }
 
     //Touch Swipe and Flick
@@ -304,6 +314,48 @@ public class Player : MonoBehaviour
         {
             this._rigidbody2D.velocity = new Vector2(0f, this._rigidbody2D.velocity.y);
             _animator.SetBool("isWalk", false);
+        }
+    }
+
+    private void Control()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _tapCount++;
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Guard();
+        }
+
+        if (_tapCount > 0 && !_isAttacking)
+        {
+            _animator.SetBool("isWalk", false);
+            _animator.SetTrigger("AttackStart");
+            _tapCount--;
+        }
+    }
+
+    /// <summary>
+    /// 動きます
+    /// </summary>
+    /// <param name="isRight"></param>
+    private void Move(bool isRight = true)
+    {
+        //移動
+        if (isRight && !RightWall())
+        {
+            _isRight = 1;
+            this._rigidbody2D.velocity = new Vector2(Speed, this._rigidbody2D.velocity.y);
+            this.transform.localScale = new Vector3(_size, _size, _size);
+            _animator.SetBool("isWalk", true);
+        }
+        else if (!isRight && !LeftWall())
+        {
+            _isRight = -1;
+            this._rigidbody2D.velocity = new Vector2(-Speed, this._rigidbody2D.velocity.y);
+            this.transform.localScale = new Vector3(-_size, _size, _size);
+            _animator.SetBool("isWalk", true);
         }
     }
 

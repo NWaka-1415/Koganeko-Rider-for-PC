@@ -14,6 +14,7 @@ namespace Controllers
         [SerializeField] private GameObject _pausePanel;
         [SerializeField] private GameObject _jumpButton;
         [SerializeField] private GameObject[] _paramIcons;
+        [SerializeField] private Text guardIntervalText = null;
 
         [SerializeField] private GameObject _debugLog;
 

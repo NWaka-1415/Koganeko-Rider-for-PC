@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 namespace Controllers
@@ -13,10 +12,13 @@ namespace Controllers
 
         private readonly List<List<GameObject>> _stagePrefabsInChapters = new List<List<GameObject>>();
 
-        private GameObject _gameClearPanel;
+        [SerializeField] private GameObject gameClearPanel;
 
-        private GameObject _gameOverPanel;
-        private GameObject _continue;
+        [SerializeField] private GameObject gameOverPanel;
+
+        [SerializeField] private GameObject pausePanel;
+
+        [SerializeField] private GameObject _continue;
 
         [SerializeField] private GameObject _production;
         [SerializeField] private AudioClip _startAudioClip;
@@ -49,9 +51,9 @@ namespace Controllers
         {
             RoomController.instance.Initialize(Room.Gaming);
             _audioSource = GetComponent<AudioSource>();
-            _gameClearPanel = GameObject.Find("GameClearPanel");
-            _gameOverPanel = GameObject.Find("GameOverPanel");
-            _continue = GameObject.Find("AreYouContinue");
+//            gameClearPanel = GameObject.Find("GameClearPanel");
+//            gameOverPanel = GameObject.Find("GameOverPanel");
+//            _continue = GameObject.Find("AreYouContinue");
             Init();
             SetGameStage();
             SetGame();
@@ -81,22 +83,23 @@ namespace Controllers
 
         void SetGameStage()
         {
-            //Instantiate(_stagePrefabs[0]);
+//            Instantiate(_stagePrefabs[0]);
             Instantiate(OverallController.instance.StagePrefabsInChapters[_chapter - 1][_stage - 1]);
         }
 
         void SetGame()
         {
             _continue.SetActive(false);
-            _gameOverPanel.SetActive(false);
-            _gameClearPanel.SetActive(false);
+            gameOverPanel.SetActive(false);
+            gameClearPanel.SetActive(false);
+            pausePanel.SetActive(false);
         }
 
         void GameOverLoad()
         {
             if (_gameOver && !_gameClear)
             {
-                _gameOverPanel.SetActive(true);
+                gameOverPanel.SetActive(true);
                 if (_gameOverDelta >= 2.5f)
                 {
                     _continue.SetActive(true);
@@ -112,11 +115,12 @@ namespace Controllers
         {
             if (_gameClear && !_gameOver)
             {
-                _gameClearPanel.SetActive(true);
+                gameClearPanel.SetActive(true);
                 if (_gameClearDelta >= 2f)
                 {
                     //Resultに遷移
-                    if (_chapter == OverallController.instance.MaxChapter && _stage == OverallController.instance.MaxStage)
+                    if (_chapter == OverallController.instance.MaxChapter &&
+                        _stage == OverallController.instance.MaxStage)
                     {
                         if (OverallController.instance.MaxStage + 1 > OverallController.instance.StagePerChapter)
                         {

@@ -289,7 +289,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -195.00003, y: 460.00372}
+  m_AnchoredPosition: {x: -195.00003, y: 100}
   m_SizeDelta: {x: 358.9, y: 67.30005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &87257034
@@ -499,10 +499,10 @@ RectTransform:
   m_Father: {fileID: 398289368}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000037664, y: 0.0000076293945}
-  m_SizeDelta: {x: 800, y: 159.6}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0.0000076293945}
+  m_SizeDelta: {x: 0, y: 159.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &178728556
 MonoBehaviour:
@@ -526,7 +526,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: ed970cc24617c4a4792def9ff28b91aa, type: 3}
-    m_FontSize: 120
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1324,7 +1324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 200.00002, y: 460.00372}
+  m_AnchoredPosition: {x: 200, y: 100}
   m_SizeDelta: {x: 358.9, y: 67.30005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &677717539
@@ -2503,7 +2503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1002844227
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3455,7 +3455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1647841986
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3530,7 +3530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1678017072
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3808,6 +3808,26 @@ PrefabInstance:
       propertyPath: _startAudioClip
       value: 
       objectReference: {fileID: 8300000, guid: 277f2b270b3af9e449368eda3190eaac, type: 3}
+    - target: {fileID: 114546958202996986, guid: 9ace0a51e7ef9814288996091acde4c8,
+        type: 3}
+      propertyPath: gameClearPanel
+      value: 
+      objectReference: {fileID: 1647841985}
+    - target: {fileID: 114546958202996986, guid: 9ace0a51e7ef9814288996091acde4c8,
+        type: 3}
+      propertyPath: gameOverPanel
+      value: 
+      objectReference: {fileID: 1678017071}
+    - target: {fileID: 114546958202996986, guid: 9ace0a51e7ef9814288996091acde4c8,
+        type: 3}
+      propertyPath: _continue
+      value: 
+      objectReference: {fileID: 242479545}
+    - target: {fileID: 114546958202996986, guid: 9ace0a51e7ef9814288996091acde4c8,
+        type: 3}
+      propertyPath: pausePanel
+      value: 
+      objectReference: {fileID: 398289367}
     m_RemovedComponents:
     - {fileID: 114725765108452332, guid: 9ace0a51e7ef9814288996091acde4c8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9ace0a51e7ef9814288996091acde4c8, type: 3}
