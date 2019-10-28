@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class FireChromeAttack : StateMachineBehaviour
 {
-    private Enemy _enemyFireChrome;
+    private Enemy.Enemy _enemyFireChrome;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _enemyFireChrome = animator.gameObject.GetComponent<Enemy>();
+        _enemyFireChrome = animator.gameObject.GetComponent<Enemy.Enemy>();
         _enemyFireChrome.Rigidbody2D.velocity =
             new Vector2(50f * _enemyFireChrome.IsRight, _enemyFireChrome.Rigidbody2D.velocity.y);
     }

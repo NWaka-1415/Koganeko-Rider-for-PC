@@ -6,7 +6,7 @@ using Values;
 public class SearchAreaOnEnemy : MonoBehaviour
 {
     private GameObject _playerInSearchArea;
-    private Enemy _enemy;
+    private Enemy.Enemy _enemy;
 
     private float _shortDist = 15f;
 
@@ -14,8 +14,8 @@ public class SearchAreaOnEnemy : MonoBehaviour
 
     private void Start()
     {
-        _enemy = GetComponentInParent<Enemy>();
-        if (_enemy.Pattern == Enemy.EnemyPattern.Skyper)
+        _enemy = GetComponentInParent<Enemy.Enemy>();
+        if (_enemy.Pattern == Enemy.Enemy.EnemyPattern.Skyper)
         {
             _shortDist = 2.5f;
         }
@@ -32,12 +32,12 @@ public class SearchAreaOnEnemy : MonoBehaviour
             {
                 if (!_enemy.IsPatrol)
                 {
-                    _enemy.States = Enemy.State.Stop;
+                    _enemy.States = Enemy.Enemy.State.Stop;
                 }
             }
             else
             {
-                _enemy.States = Enemy.State.Patrol;
+                _enemy.States = Enemy.Enemy.State.Patrol;
             }
         }
     }
@@ -59,7 +59,7 @@ public class SearchAreaOnEnemy : MonoBehaviour
                 if (_enemy.IsAttackState) return;
                 if (Mathf.Abs(distX) < _shortDist)
                 {
-                    _enemy.States = Enemy.State.ShortDistAttack;
+                    _enemy.States = Enemy.Enemy.State.ShortDistAttack;
                 }
                 else
                 {
@@ -73,7 +73,7 @@ public class SearchAreaOnEnemy : MonoBehaviour
                         }
                         else
                         {*/
-                    _enemy.States = Enemy.State.LongDistAttack;
+                    _enemy.States = Enemy.Enemy.State.LongDistAttack;
                     //}
                 }
 
@@ -93,7 +93,7 @@ public class SearchAreaOnEnemy : MonoBehaviour
     {
         if (other.CompareTag(Tag.Player))
         {
-            _enemy.States = Enemy.State.Stop;
+            _enemy.States = Enemy.Enemy.State.Stop;
             _isPlayerFound = false;
         }
     }

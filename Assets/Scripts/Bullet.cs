@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Enemy;
 using UnityEngine;
 using Values;
 
@@ -82,7 +83,7 @@ public class Bullet : MonoBehaviour
         {
             if (other.gameObject.CompareTag(Tag.Enemy))
             {
-                other.GetComponent<Enemy>().Damaged(_attackPower);
+                other.GetComponent<Enemy.Enemy>().Damaged(_attackPower);
                 Attack();
             }
             else if (other.gameObject.CompareTag(Tag.LargeEnemy))

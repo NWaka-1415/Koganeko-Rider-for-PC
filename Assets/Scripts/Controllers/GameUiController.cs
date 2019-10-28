@@ -20,8 +20,8 @@ namespace Controllers
 
         private Player _player;
         private Text _hpText;
-        private Image _hpGreenGage;
-        private Image _hpRedGage;
+        [SerializeField] private Image hpGreenGage = null;
+        [SerializeField] private Image hpRedGage = null;
 
         private float _fromHp;
         private float _toHp;
@@ -57,7 +57,7 @@ namespace Controllers
             float maxHp = _player.GetHP(0);
             float hitPoint = _player.GetHP(1);
             //Debug.Log("ShowingHp:" + (hitPoint / maxHp).ToString());
-            _hpGreenGage.fillAmount = hitPoint / maxHp;
+            hpGreenGage.fillAmount = hitPoint / maxHp;
             ReduceRedHp();
         }
 
@@ -85,10 +85,10 @@ namespace Controllers
             }
 
             //Hpのセット
-            _hpGreenGage = GameObject.Find("HP Gage Green").GetComponent<Image>();
-            _hpGreenGage.fillAmount = 1;
-            _hpRedGage = GameObject.Find("HP Gage Red").GetComponent<Image>();
-            _hpRedGage.fillAmount = 1;
+            hpGreenGage = GameObject.Find("HP Gage Green").GetComponent<Image>();
+            hpGreenGage.fillAmount = 1;
+            hpRedGage = GameObject.Find("HP Gage Red").GetComponent<Image>();
+            hpRedGage.fillAmount = 1;
             _pausePanel.SetActive(false);
         }
 
@@ -96,12 +96,12 @@ namespace Controllers
         {
             if (_fromHp > _toHp)
             {
-                _hpRedGage.fillAmount = _fromHp / _player.GetHP(0);
+                hpRedGage.fillAmount = _fromHp / _player.GetHP(0);
                 _fromHp -= _frameReduceHp;
             }
             else
             {
-                _hpRedGage.fillAmount = _toHp / _player.GetHP(0);
+                hpRedGage.fillAmount = _toHp / _player.GetHP(0);
             }
         }
 

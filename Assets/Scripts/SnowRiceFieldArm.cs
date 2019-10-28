@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Anima2D;
+using Enemy;
 using UnityEngine;
 
 public class SnowRiceFieldArm : MonoBehaviour

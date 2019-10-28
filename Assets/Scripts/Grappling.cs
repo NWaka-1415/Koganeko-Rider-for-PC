@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Enemy;
 using UnityEngine;
 using Values;
 
@@ -14,12 +15,12 @@ public class Grappling : MonoBehaviour
             if (_parent.CompareTag(Tag.LargeEnemy))
                 other.gameObject.GetComponent<Player>().Damaged(_parent.GetComponent<LargeEnemy>().AttackPower);
             else if (_parent.CompareTag(Tag.Enemy))
-                other.gameObject.GetComponent<Player>().Damaged(_parent.GetComponent<Enemy>().AttackPower);
+                other.gameObject.GetComponent<Player>().Damaged(_parent.GetComponent<Enemy.Enemy>().AttackPower);
         }
         else if (other.CompareTag(Tag.Enemy))
         {
             if (_parent.CompareTag(Tag.Player))
-                other.gameObject.GetComponent<Enemy>().Damaged(_parent.GetComponent<Player>().AttackPower);
+                other.gameObject.GetComponent<Enemy.Enemy>().Damaged(_parent.GetComponent<Player>().AttackPower);
         }
         else if (other.CompareTag(Tag.LargeEnemy))
         {

@@ -14,7 +14,7 @@ public class ProductionBehaviour : StateMachineBehaviour
     {
         _canvas = GameObject.Find("Canvas");
         _audioController = GameObject.Find("Audio Source").GetComponent<AudioController>();
-        _gameSceneController = GameObject.Find("GameManager").GetComponent<GameSceneController>();
+        _gameSceneController = GameSceneController.instance;
         _gameSceneController.PlayStartAudio();
     }
 

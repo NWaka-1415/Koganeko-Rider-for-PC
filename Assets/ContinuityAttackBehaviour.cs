@@ -16,7 +16,7 @@ public class ContinuityAttackBehaviour : StateMachineBehaviour
     {
         animator.ResetTrigger("isAttack00");
         _player = animator.gameObject.GetComponent<Player>();
-        _gameSceneController = GameObject.Find("GameManager").GetComponent<GameSceneController>();
+        _gameSceneController = GameSceneController.instance;
         if (!_gameSceneController.GameClear && !_gameSceneController.GameOver)
         {
             _player.Attack(0);
