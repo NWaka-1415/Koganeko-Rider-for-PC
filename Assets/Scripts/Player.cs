@@ -319,14 +319,10 @@ public class Player : MonoBehaviour
 
     private void Control()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _tapCount++;
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            Guard();
-        }
+        if (Input.GetKeyDown(KeyCode.Space)) _tapCount++;
+        else if (Input.GetKeyDown(KeyCode.DownArrow)) Guard();
+        else if (Input.GetKeyDown(KeyCode.RightArrow)) Move();
+        else if (Input.GetKeyDown(KeyCode.LeftArrow)) Move(false);
 
         if (_tapCount > 0 && !_isAttacking)
         {
