@@ -330,6 +330,7 @@ public class Player : MonoBehaviour
 
         if (_tapCount > 0 && !_isAttacking)
         {
+            //攻撃
             _animator.SetBool("isWalk", false);
             _animator.SetTrigger("AttackStart");
             _tapCount--;
