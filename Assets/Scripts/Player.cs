@@ -87,6 +87,11 @@ public class Player : MonoBehaviour
     private bool _isDamaging;
     private float _stoppedTime = 0f;
     private float _size;
+    private static readonly int IsWalk = Animator.StringToHash("isWalk");
+    private static readonly int AttackStart = Animator.StringToHash("AttackStart");
+    private static readonly int IsDamaged = Animator.StringToHash("isDamaged");
+    private static readonly int IsFalling = Animator.StringToHash("isFalling");
+    private static readonly int Jump1 = Animator.StringToHash("Jump");
 
     // Use this for initialization
     void Start()
@@ -118,7 +123,7 @@ public class Player : MonoBehaviour
             _guardInterval -= Time.deltaTime;
             if (_guardInterval <= 0f) _guardInterval = 0f;
 
-            _animator.SetBool("isFalling", OnGround());
+            _animator.SetBool(IsFalling, OnGround());
             if (OnGround())
             {
                 _capsuleCollider2D.enabled = true;
@@ -126,13 +131,13 @@ public class Player : MonoBehaviour
             }
             else
             {
-                _animator.SetBool("isWalk", false);
-                _animator.SetTrigger("Jump");
+                _animator.SetBool(id: IsWalk, false);
+                _animator.SetTrigger(Jump1);
             }
 
             if (_stoppedTime >= StoppingTime)
             {
-                _animator.SetBool("isDamaged", false);
+                _animator.SetBool(IsDamaged, false);
                 _isDamaging = false;
                 _stoppedTime = 0f;
             }
@@ -159,8 +164,8 @@ public class Player : MonoBehaviour
         }
         else
         {
-            _animator.SetBool("isFalling", true);
-            _animator.SetBool("isDamaged", true);
+            _animator.SetBool(IsFalling, true);
+            _animator.SetBool(IsDamaged, true);
         }
     }
 
@@ -306,7 +311,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    Guard();
+//                    Guard();
                 }
             }
         }
@@ -319,18 +324,40 @@ public class Player : MonoBehaviour
 
     private void Control()
     {
+        bool isDown = false;
+        bool isRMove = false;
+        bool isLMove = false;
+        bool isUp = false;
         if (Input.GetKeyDown(KeyCode.Space)) _tapCount++;
-        else if (Input.GetKeyDown(KeyCode.DownArrow)) Guard();
-        else if (Input.GetKeyDown(KeyCode.RightArrow)) Move();
-        else if (Input.GetKeyDown(KeyCode.LeftArrow)) Move(false);
+        else if (Input.GetKey(KeyCode.DownArrow)) isDown = true;
+        else
+        {
+            if (Input.GetKey(KeyCode.RightArrow)) isRMove = true;
+            if (Input.GetKey(KeyCode.LeftArrow)) isLMove = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow)) isUp = true;
 
         if (_tapCount > 0 && !_isAttacking)
         {
             //攻撃
-            _animator.SetBool("isWalk", false);
-            _animator.SetTrigger("AttackStart");
+            _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y);
+            _animator.SetBool(IsWalk, false);
+            _animator.SetTrigger(AttackStart);
             _tapCount--;
+            Guard(false);
         }
+        else if (isDown && !_isAttacking) Guard(true);
+        else if (isRMove && !isLMove && !_isAttacking) Move();
+        else if (isLMove && !isRMove && !_isAttacking) Move(false);
+        else
+        {
+            Guard(false);
+            _rigidbody2D.velocity = new Vector2(0f, this._rigidbody2D.velocity.y);
+            _animator.SetBool(IsWalk, false);
+        }
+
+        if (isUp) Jump();
     }
 
     /// <summary>
@@ -339,20 +366,21 @@ public class Player : MonoBehaviour
     /// <param name="isRight"></param>
     private void Move(bool isRight = true)
     {
+        Guard(false);
         //移動
         if (isRight && !RightWall())
         {
             _isRight = 1;
             this._rigidbody2D.velocity = new Vector2(Speed, this._rigidbody2D.velocity.y);
             this.transform.localScale = new Vector3(_size, _size, _size);
-            _animator.SetBool("isWalk", true);
+            _animator.SetBool(IsWalk, true);
         }
         else if (!isRight && !LeftWall())
         {
             _isRight = -1;
             this._rigidbody2D.velocity = new Vector2(-Speed, this._rigidbody2D.velocity.y);
             this.transform.localScale = new Vector3(-_size, _size, _size);
-            _animator.SetBool("isWalk", true);
+            _animator.SetBool(IsWalk, true);
         }
     }
 
@@ -431,9 +459,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Guard()
+    public void Guard(bool isGuard)
     {
-        _isGuard = _isStationary;
+        _isGuard = isGuard;
         if (_guardTime >= GuardLimitTime)
         {
             //ガード実行時間がガード実行可能時間を超えた際にはガード終了
@@ -442,7 +470,7 @@ public class Player : MonoBehaviour
             _guardTime = 0;
         }
 
-        //Debug.Log("ガード：" + _guardInterval);
+        Debug.Log("ガード：" + _guardInterval);
         if (_guardInterval > 0f) _isGuard = false;
 
         SpriteRenderer shieldSprite = _shield.GetComponent<SpriteRenderer>();
@@ -466,13 +494,13 @@ public class Player : MonoBehaviour
 
     private void RefreshGuardText()
     {
-        if (_guardInterval == 0)
+        if (_guardInterval <= 0)
         {
             _guardText.text = "";
         }
         else
         {
-            _guardText.text = String.Format("ガード可能まで：{0:F1}秒", _guardInterval);
+            _guardText.text = $"ガード可能まで：{_guardInterval:F1}秒";
         }
     }
 
@@ -507,7 +535,7 @@ public class Player : MonoBehaviour
             _stoppedTime = 0f;
         }
 
-        _animator.SetBool("isDamaged", true);
+        _animator.SetBool(IsDamaged, true);
         if (_hitPoint <= 0)
         {
             _hitPoint = 0;
