@@ -16,7 +16,7 @@ namespace Controllers
         // Use this for initialization
         void Start()
         {
-            _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
+            _overallController = OverallController.instance;
             SetStageButton();
         }
 
@@ -42,8 +42,8 @@ namespace Controllers
 
         public int Chapter
         {
-            get { return _chapter; }
-            set { _chapter = value; }
+            get => _chapter;
+            set => _chapter = value;
         }
     }
 }

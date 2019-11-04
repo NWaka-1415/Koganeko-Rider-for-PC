@@ -110,6 +110,7 @@ public class Player : MonoBehaviour
         _isTapped = false;
         _isStationary = false;
         SetShield();
+        RefreshGuardText();
     }
 
     // Update is called once per frame

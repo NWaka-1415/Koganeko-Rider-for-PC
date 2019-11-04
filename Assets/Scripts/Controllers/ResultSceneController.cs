@@ -34,6 +34,8 @@ namespace Controllers
         {
             if (Input.GetMouseButtonDown(0))
             {
+                RoomController.instance.GotoRoom(Room.Home);
+                return;
                 if (_view == 0)
                 {
                     _view = 1;

@@ -127,7 +127,7 @@ namespace Controllers
             if (_room == RoomState.Home)
             {
                 _timeUI.GetComponent<Text>().text =
-                    String.Format("{0} : {1:00}", hour, minute);
+                    $"{hour} : {minute:00}";
             }
             else if (_room == RoomState.Custom)
             {

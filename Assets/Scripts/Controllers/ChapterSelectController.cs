@@ -1,33 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Controllers;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ChapterSelectController : MonoBehaviour
+namespace Controllers
 {
-    [SerializeField] private GameObject _chapterPrefab;
-
-    private OverallController _overallController;
-
-    private Transform _content;
-
-    // Use this for initialization
-    void Start()
+    public class ChapterSelectController : MonoBehaviour
     {
-        _overallController = GameObject.Find("OverallManager").GetComponent<OverallController>();
-        SetChapter();
-    }
+        [SerializeField] private GameObject _chapterPrefab;
 
-    void SetChapter()
-    {
-        _content = this.gameObject.transform.Find("Viewport/Content");
-        for (int i = 0; i < _overallController.CreatedChapter; i++)
+        private OverallController _overallController;
+
+        private Transform _content;
+
+        // Use this for initialization
+        void Start()
         {
-            GameObject instanceChapter = Instantiate(_chapterPrefab, _content);
-            Debug.Log(instanceChapter.transform.Find("StageSelectView@StageSelect").name);
+            _overallController = OverallController.instance;
+            SetChapter();
+        }
 
-            instanceChapter.transform.Find("StageSelectView@StageSelect").GetComponent<StageSelectViewController>()
-                    .Chapter = i + 1;
+        void SetChapter()
+        {
+            _content = this.gameObject.transform.Find("Viewport/Content");
+            for (int i = 0; i < _overallController.CreatedChapter; i++)
+            {
+                GameObject instanceChapter = Instantiate(_chapterPrefab, _content);
+                Debug.Log(instanceChapter.transform.Find("StageSelectView@StageSelect").name);
+
+                instanceChapter.transform.Find("StageSelectView@StageSelect").GetComponent<StageSelectViewController>()
+                        .Chapter = i + 1;
+            }
         }
     }
 }

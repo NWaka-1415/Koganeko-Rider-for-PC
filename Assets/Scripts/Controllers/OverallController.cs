@@ -163,15 +163,9 @@ namespace Controllers
             this.SaveGameData();
         }
 
-        public int ExperiencePoint
-        {
-            get { return _experiencePoint; }
-        }
+        public int ExperiencePoint => _experiencePoint;
 
-        public int GettingExp
-        {
-            get { return _gettingExp; }
-        }
+        public int GettingExp => _gettingExp;
 
         public void ResetGameData()
         {
